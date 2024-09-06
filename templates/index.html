@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Website Viewer</title>
+    <style>
+        body { 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+            font-family: Arial, sans-serif; 
+            background-color: #f0f0f0; 
+        }
+        h1 { 
+            color: #333; 
+        }
+        button { 
+            padding: 15px 30px; 
+            font-size: 18px; 
+            color: #fff; 
+            background-color: #007bff; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background-color 0.3s; 
+        }
+        button:hover { 
+            background-color: #0056b3; 
+        }
+        button:active { 
+            background-color: #003d7a; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Website Viewer</h1>
+    <button id="watchBtn">Смотреть</button>
+
+    <script>
+        document.getElementById('watchBtn').addEventListener('click', () => {
+            fetch('/get-website')
+                .then(response => response.json())
+                .then(data => {
+                    // Открывает URL в новой вкладке
+                    window.open(data.url, '_blank');
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
